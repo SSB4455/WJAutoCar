@@ -17,6 +17,8 @@ public class HallwayAgent : Agent
     HallwaySettings m_HallwaySettings;
     int m_Selection;
 
+
+
     public override void InitializeAgent()
     {
         base.InitializeAgent();

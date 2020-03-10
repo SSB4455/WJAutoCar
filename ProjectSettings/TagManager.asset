@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - agent
+  - wall
+  - goal
+  - pit
+  - symbol_X_Goal
+  - symbol_O_Goal
+  - symbol_O
+  - ground
+  - symbol_X
+  - block
   layers:
   - Default
   - TransparentFX
@@ -13,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - CarBody
   - 
   - 
   - 
