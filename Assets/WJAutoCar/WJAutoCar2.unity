@@ -2145,9 +2145,9 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: e663b42ef19a5f144b4a41c6f08f5ad9, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: WJAutoCar
   m_TeamID: 0
   m_UseChildSensors: 1
