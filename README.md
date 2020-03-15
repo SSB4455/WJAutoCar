@@ -1,6 +1,8 @@
 # 使用机器学习让飞思卡尔小车实现自动驾驶（基于摄像头）
 
-## [ml-agent介绍](https://github.com/Unity-Technologies/ml-agents/blob/latest_release/docs/localized/zh-CN/docs/ML-Agents-Overview.md)(重点看)
+## [ml-agents介绍](https://github.com/Unity-Technologies/ml-agents/blob/latest_release/docs/localized/zh-CN/docs/ML-Agents-Overview.md)(重点看)
+
+- [ml-agents创建简单环境中文示例](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/localized/zh-CN/docs/Learning-Environment-Create-New.md)
 
 ## [安装ml-agents](https://github.com/Unity-Technologies/ml-agents/blob/788a34786094e974c1637f08a709640f72e1c755/docs/Installation.md)(了解)
 
@@ -19,9 +21,10 @@
 
 [WheelCollider](https://docs.unity3d.com/Manual/class-WheelCollider.html)示例里的摩擦力设置会导致车子抓地力无限大
 
+![Inspector-WheelCollider2_demo.png](https://github.com/SSB4455/WJAutoCar/blob/master/doc/Inspector-WheelCollider2_demo.png)
 ![WheelFrictionCurve.png](https://github.com/SSB4455/WJAutoCar/blob/master/doc/WheelFrictionCurve.png)
 
-[中文手册](http://docs.manew.com/Components/107.html)
+[WheelCollider中文手册](http://docs.manew.com/Components/107.html)
 
 ## 完成游戏逻辑、小车控制、奖惩设置
 
@@ -34,6 +37,7 @@
 - 运行 tensorboard --logdir=summaries
 - 然后导航至 localhost:6006。
 - [3D Balance Ball 环境入门](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/localized/zh-CN/docs/Getting-Started-with-Balance-Ball.md)
+- [ml-agents创建简单环境中文示例](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/localized/zh-CN/docs/Learning-Environment-Create-New.md)
 - 从 TensorBoard 中，您将看到摘要统计信息：
 >
 >- Lesson - 只有在进行 课程训练时才有意义。 3D Balance Ball 环境中不使用此项。
@@ -47,13 +51,12 @@
 
 ## 现存问题
 
-- 当车辆重置时车轮还有惯性旋转
 - 车辆控制还不像模型车（例如高速过弯会翻车）
+- 当车辆重置时车轮还有惯性旋转
 - 道路存在极少素材重叠
 
 ## 下一步要做
 
-- 组件属性截图 对应中文
 - 训练次数与时间和显示时间的对比
 - PPO强化学习的中文解释
 - 做一个测试平台
