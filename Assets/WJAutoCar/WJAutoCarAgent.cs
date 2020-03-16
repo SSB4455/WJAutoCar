@@ -20,6 +20,14 @@ public class WJAutoCarAgent : Agent
 		hr = transform.Find("Alloys01").Find("hr").GetComponent<WheelCollider>();
 
 		GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.01f, -0.02f);//左右 上下 前后
+
+		Monitor.SetActive(true);
+
+
+		//GetComponentInChildren<Collider>().private void OnTriggerEnter(Collider other) {
+			
+		//}
+
 	}
 
 	public override void AgentReset()
@@ -47,6 +55,7 @@ public class WJAutoCarAgent : Agent
 
 		forward = Vector3.Normalize(fl.transform.position - hl.transform.position);
 		
+		lastCollisionTime = Time.realtimeSinceStartup;
 	}
 
 	public override void CollectObservations()
@@ -62,6 +71,13 @@ public class WJAutoCarAgent : Agent
     
 	public override void AgentAction(float[] vectorAction)
 	{
+
+		Monitor.Log("vectorAction", vectorAction, transform);
+		//Monitor.Log("vectorAction", vectorAction[0], null);
+		Monitor.Log("CumulativeReward", this.GetCumulativeReward(), null);
+		Monitor.Log("time left", this.maxStep - this.GetStepCount(), null);
+		
+		//this.rew
 		float angle_z = transform.rotation.eulerAngles.z > 180 ? 360 - transform.rotation.eulerAngles.z : transform.rotation.eulerAngles.z;
 		//翻车
 		if (Mathf.Abs(angle_z) > 20)
@@ -93,11 +109,11 @@ public class WJAutoCarAgent : Agent
 		hr.GetWorldPose(out position, out rotation);
 		hl.transform.rotation = rotation;
 		hr.transform.rotation = rotation;
-		forward = Vector3.Normalize(fl.transform.position - hl.transform.position);
 
+		forward = Vector3.Normalize(fl.transform.position - hl.transform.position);
 		float forwardSpeed = Vector3.Dot(forward, GetComponent<Rigidbody>().velocity);
-		SetReward(forwardSpeed / 100);
-		Debug.Log("torque = " + torque + " forwardSpeed = " + forwardSpeed);
+		AddReward(forwardSpeed / 1000);
+		//Debug.Log("torque = " + torque + " forwardSpeed = " + forwardSpeed);
 	}
 
 	public override float[] Heuristic()
@@ -108,4 +124,26 @@ public class WJAutoCarAgent : Agent
 		action[1] = Input.GetAxis("Vertical");
 		return action;
 	}
+	
+	Collider lastCollider = null;
+	float lastCollisionTime = 0;
+	private void OnTriggerEnter(Collider collider)
+    {
+		Debug.Log("OnTriggerEnter " + collider.gameObject.name);
+        if(collider.tag == "RewardWall")
+        {
+            if (collider != lastCollider)
+			{
+				if (lastCollider != null)
+				{
+					AddReward(1 / (1 + Time.realtimeSinceStartup - lastCollisionTime));
+				}
+				lastCollider = collider;
+				lastCollisionTime = Time.realtimeSinceStartup;
+			} else {
+				AddReward(-0.2f);
+			}
+        }
+    }
+
 }
