@@ -8,6 +8,8 @@
 
 - 安装unity 3018.4.18f1
 - Install the com.unity.ml-agents Unity package
+- [Unity ML-Agent之Agents设计](https://www.jianshu.com/p/6d40059a3454)(部分内容已经和最新版本不对应 但可以参考名词翻译部分)
+- [码云同步项目地址](https://gitee.com/mirrors/Unity-ML-Agents)
 
 ## [按照教程安装集成环境Anaconda](https://github.com/Unity-Technologies/ml-agents/blob/788a34786094e974c1637f08a709640f72e1c755/docs/Installation-Anaconda-Windows.md)
 
@@ -29,15 +31,16 @@
 ## 完成游戏逻辑、小车控制、奖惩设置
 
 - 调整ml-agents/config/trainer_config.yaml 里面的参数（不调也行 就是可能训练效率会比较差）
-- 重命名为 mlagents-learn config/config.yaml
-- 运行 mlagents-learn config/config.yaml --run-id=WJAutoCar-1 --train
-  - 其中WJAutoCar是游戏中大脑的名字
+- 重命名为 mlagents-learn config/config.yaml 在命令行中运行：
+  > mlagents-learn config/config.yaml --run-id=WJAutoCar-1 --train
+- (其中WJAutoCar是游戏中大脑的名字)
 - 然后在unity中点击运行
-- 开始进行训练后，ml-agents 文件夹将 包含一个 summaries 目录。为了更详细地观测训练过程， 您可以使用 TensorBoard。从命令行中运行：
-- 运行 tensorboard --logdir=summaries
+- 开始进行训练后，ml-agents 文件夹将 包含一个 summaries 目录。为了更详细地观测训练过程， 您可以使用 TensorBoard。在命令行中运行：
+  > tensorboard --logdir=summaries
 - 然后导航至 localhost:6006。
 - [3D Balance Ball 环境入门](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/localized/zh-CN/docs/Getting-Started-with-Balance-Ball.md)
 - [ml-agents创建简单环境中文示例](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/localized/zh-CN/docs/Learning-Environment-Create-New.md)
+- [Unity3D ML-Agent-0.8.1 学习二（单代理学习）](https://blog.csdn.net/wangwei19871103/article/details/90345542)(写制作场景的过程可以参考)
 - 从 TensorBoard 中，您将看到摘要统计信息：
 >
 >- Lesson - 只有在进行 课程训练时才有意义。 3D Balance Ball 环境中不使用此项。
@@ -59,6 +62,7 @@
 
 - 训练次数与时间和显示时间的对比
 - PPO强化学习的中文解释
+- 增加Monitor显示训练时的参数
 - 做一个测试平台
   - 包含一段直路
     - 记录到终点时的速度
