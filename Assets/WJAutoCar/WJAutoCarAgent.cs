@@ -4,7 +4,6 @@ using MLAgents;
 public class WJAutoCarAgent : Agent
 {
 	private WheelDrive wd;
-	private WheelCollider fl, hl;
 
 
 
@@ -16,8 +15,6 @@ public class WJAutoCarAgent : Agent
 		wd = transform.GetComponent<WheelDrive>();
 		wd.scriptControl = true;
 
-		fl = transform.Find("Alloys01").Find("fl").GetComponent<WheelCollider>();
-		hl = transform.Find("Alloys01").Find("hl").GetComponent<WheelCollider>();
 	}
 
 	public override void AgentReset()
@@ -32,7 +29,7 @@ public class WJAutoCarAgent : Agent
 		wd.Drive(0, 0);
 
 		//hr.brakeTorque = 10000;
-		
+
 		lastCollisionTime = Time.realtimeSinceStartup;
 	}
 
@@ -46,7 +43,7 @@ public class WJAutoCarAgent : Agent
 		//AddVectorObs(rBody.velocity.x);
 		//AddVectorObs(rBody.velocity.z);
 	}
-    
+
 	public override void AgentAction(float[] vectorAction)
 	{
 		wd.Drive(vectorAction[0], vectorAction[1]);
@@ -80,9 +77,9 @@ public class WJAutoCarAgent : Agent
 			Done();
 		}
 
-		float forwardSpeed = Vector3.Dot(transform.forward, GetComponent<Rigidbody>().velocity);
-		Monitor.Log("forwardSpeed", forwardSpeed / 30, transform);
-		AddReward(forwardSpeed / 1000);
+		Monitor.Log("forwardSpeed", wd.ForwardSpeed / 30, transform);
+		AddReward(wd.ForwardSpeed / 1000);
+		
 	}
 
 	public override float[] Heuristic()
@@ -93,15 +90,15 @@ public class WJAutoCarAgent : Agent
 		action[1] = Input.GetAxis("Vertical");
 		return action;
 	}
-	
+
 	Collider lastCollider = null;
 	float lastCollisionTime = 0;
 	private void OnTriggerEnter(Collider collider)
-    {
+	{
 		Debug.Log("OnTriggerEnter " + collider.gameObject.name);
-        if(collider.tag == "RewardWall")
-        {
-            if (collider != lastCollider)
+		if (collider.tag == "RewardWall")
+		{
+			if (collider != lastCollider)
 			{
 				if (lastCollider != null)
 				{
@@ -109,10 +106,12 @@ public class WJAutoCarAgent : Agent
 				}
 				lastCollider = collider;
 				lastCollisionTime = Time.realtimeSinceStartup;
-			} else {
+			}
+			else
+			{
 				AddReward(-0.2f);
 			}
-        }
-    }
+		}
+	}
 
 }

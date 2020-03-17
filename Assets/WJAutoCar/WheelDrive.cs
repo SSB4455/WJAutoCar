@@ -32,10 +32,12 @@ public class WheelDrive : MonoBehaviour
 	public bool scriptControl;
 
     private WheelCollider[] m_Wheels;
+	float forwardSpeed;
+	public float ForwardSpeed { get { return forwardSpeed; } }
 
 
 
-    // Find all the WheelColliders down in the hierarchy.
+	// Find all the WheelColliders down in the hierarchy.
 	void Start()
 	{
 		m_Wheels = GetComponentsInChildren<WheelCollider>();
@@ -62,6 +64,8 @@ public class WheelDrive : MonoBehaviour
 		{
 			Drive(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		}
+
+		forwardSpeed = Vector3.Dot(transform.forward, GetComponent<Rigidbody>().velocity);
 	}
 
 	public void Drive(float angle, float torque, bool pullHandBrake = false)
