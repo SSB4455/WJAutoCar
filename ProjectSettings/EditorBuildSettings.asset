@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TestCar/TestCar.unity
-    guid: 48a51350bfaf4a64091026a0686ca569
+    path: Assets/WJAutoCar/WJAutoCar3.unity
+    guid: 190a0650a23ba524db524b67b2ebb285
   m_configObjects: {}

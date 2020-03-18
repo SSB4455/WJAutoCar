@@ -47,7 +47,7 @@ public class WJAutoCarAgent : Agent
 	public override void AgentAction(float[] vectorAction)
 	{
 		wd.Drive(vectorAction[0], vectorAction[1]);
-		AddReward(-0.01f);
+		AddReward(-0.001f);
 
 		float[] desplayTorque = new float[] { vectorAction[1] };
 		Monitor.Log("torque", desplayTorque, transform);
@@ -102,7 +102,7 @@ public class WJAutoCarAgent : Agent
 			{
 				if (lastCollider != null)
 				{
-					AddReward(1 / (1 + Time.realtimeSinceStartup - lastCollisionTime));
+					AddReward(0.5f / (1 + Time.realtimeSinceStartup - lastCollisionTime));
 				}
 				lastCollider = collider;
 				lastCollisionTime = Time.realtimeSinceStartup;
