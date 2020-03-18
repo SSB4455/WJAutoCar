@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using Barracuda;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 using MLAgents;
 
 public class WJAutoCarAgent : Agent
 {
+	public NNModel[] brains;
+	public Dropdown dropdown;
 	private WheelDrive wd;
 
 
@@ -15,6 +20,13 @@ public class WJAutoCarAgent : Agent
 		wd = transform.GetComponent<WheelDrive>();
 		wd.scriptControl = true;
 
+		List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
+		for (int i = 0; i < brains.Length; i++)
+		{
+			options.Add(new Dropdown.OptionData(brains[i].name));
+		}
+		dropdown.options = options;
+		dropdown.value = brains.Length - 1;
 	}
 
 	public override void AgentReset()
@@ -42,6 +54,14 @@ public class WJAutoCarAgent : Agent
 		// Agent velocity
 		//AddVectorObs(rBody.velocity.x);
 		//AddVectorObs(rBody.velocity.z);
+	}
+
+	public void ChangeBrain()
+	{
+		if (dropdown.value < brains.Length)
+		{
+			GiveModel("WJAutoCar", brains[dropdown.value]);
+		}
 	}
 
 	public override void AgentAction(float[] vectorAction)
