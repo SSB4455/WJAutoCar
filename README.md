@@ -33,7 +33,7 @@
 - 重命名为 mlagents-learn config/config.yaml 在命令行中运行：
   > mlagents-learn config/config.yaml --run-id=WJAutoCar-1 --train
 - (其中WJAutoCar是游戏中大脑的名字)
-- 然后在unity中点击运行
+- 然后在unity中点击▶️运行
 - 开始进行训练后，ml-agents 文件夹将 包含一个 summaries 目录。为了更详细地观测训练过程， 您可以使用 TensorBoard。在命令行中运行：
   > tensorboard --logdir=summaries
 - 然后导航至 localhost:6006。
@@ -70,3 +70,9 @@
 - 选择不同赛道测试
 - 增加车辆组件
 - 调整不同的车进行测试
+
+## 关于自动驾驶的思考
+
+- 假设我们在训练一个外卖员送外卖 我们会给外卖员设定送到 朝向目标移动的奖励 同时我们会给外卖员不遵守交通规则以及超时的惩罚
+  然而就在超时和遵守交通规则的两难里面 机器学习的外卖员自然也会像人类一样稍微不遵守交通规则从而在规定时间内送到 因为这样奖励更多
+  所以在机器学习的训练中如何让模型不做那些人类伦理所不能接受的事情也是要注意的一个点
