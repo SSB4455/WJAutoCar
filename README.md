@@ -10,6 +10,7 @@
 - Install the com.unity.ml-agents Unity package
 - [Unity ML-Agent之Agents设计](https://www.jianshu.com/p/6d40059a3454)(部分内容已经和最新版本不对应 但可以参考名词翻译部分)
 - [码云同步项目地址](https://gitee.com/mirrors/Unity-ML-Agents)
+- [深度学习PPO算法简介](https://zhuanlan.zhihu.com/p/38185553)
 
 ## [按照教程安装集成环境Anaconda](https://github.com/Unity-Technologies/ml-agents/blob/788a34786094e974c1637f08a709640f72e1c755/docs/Installation-Anaconda-Windows.md)
 
@@ -41,7 +42,7 @@
 - [ml-agents创建简单环境中文示例](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/localized/zh-CN/docs/Learning-Environment-Create-New.md)
 - [Unity3D ML-Agent-0.8.1 学习二（单代理学习）](https://blog.csdn.net/wangwei19871103/article/details/90345542)(写制作场景的过程可以参考)
 - 从 TensorBoard 中，您将看到摘要统计信息：
-  >
+
   >- Lesson - 只有在进行 课程训练时才有意义。 3D Balance Ball 环境中不使用此项。
   >- Cumulative Reward - 所有 agent 的平均累积场景奖励。 在成功训练期间应该增大。
   >- Entropy - 模型决策的随机程度。在成功训练过程中 应该缓慢减小。如果减小得太快，应增大 beta 超参数。
