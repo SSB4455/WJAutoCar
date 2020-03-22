@@ -10,6 +10,7 @@
 - Install the com.unity.ml-agents Unity package
 - [Unity ML-Agent之Agents设计](https://www.jianshu.com/p/6d40059a3454)(部分内容已经和最新版本不对应 但可以参考名词翻译部分)
 - [码云同步项目地址](https://gitee.com/mirrors/Unity-ML-Agents)
+- [深度学习PPO算法简介](https://zhuanlan.zhihu.com/p/38185553)
 
 ## [按照教程安装集成环境Anaconda](https://github.com/Unity-Technologies/ml-agents/blob/788a34786094e974c1637f08a709640f72e1c755/docs/Installation-Anaconda-Windows.md)
 
