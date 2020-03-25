@@ -47,13 +47,13 @@ public class WJAutoCarAgent : Agent
 
 	public override void CollectObservations()
 	{
-		// Target and Agent positions
-		//AddVectorObs(Target.position);
-		//AddVectorObs(this.transform.position);
+		// car 3D Speed and ForwardSpeed
+		AddVectorObs(GetComponent<Rigidbody>().velocity.x);
+		AddVectorObs(GetComponent<Rigidbody>().velocity.y);
+		AddVectorObs(wd.ForwardSpeed);
 
-		// Agent velocity
-		//AddVectorObs(rBody.velocity.x);
-		//AddVectorObs(rBody.velocity.z);
+		// car rotation
+		AddVectorObs(transform.rotation.eulerAngles.y);
 	}
 
 	public void ChangeBrain()
