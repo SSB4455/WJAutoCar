@@ -1,5 +1,7 @@
 # 使用机器学习让飞思卡尔小车实现自动驾驶（基于摄像头）
 
+![WheelFrictionCurve.png](https://github.com/SSB4455/WJAutoCar/blob/master/doc/Snipaste_2020-03-14_17-08-18.png)
+
 ## [ml-agents介绍](https://github.com/Unity-Technologies/ml-agents/blob/latest_release/docs/localized/zh-CN/docs/ML-Agents-Overview.md)(重点看)
 
 - [ml-agents创建简单环境中文示例](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/localized/zh-CN/docs/Learning-Environment-Create-New.md)
