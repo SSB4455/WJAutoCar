@@ -53,7 +53,10 @@ public class WJAutoCarAgent : Agent
 		AddVectorObs(wd.ForwardSpeed);
 
 		// car rotation
-		AddVectorObs(transform.rotation.eulerAngles.y);
+		AddVectorObs(transform.rotation.eulerAngles.y / 360);
+
+		// 剩余活动时间
+		AddVectorObs(GetStepCount() / (float)maxStep);
 	}
 
 	public void ChangeBrain()
@@ -67,14 +70,14 @@ public class WJAutoCarAgent : Agent
 	public override void AgentAction(float[] vectorAction)
 	{
 		wd.Drive(vectorAction[0], vectorAction[1]);
-		AddReward(-0.001f);
+		AddReward(-0.00001f);
 
 		float[] desplayTorque = new float[] { vectorAction[1] };
 		Monitor.Log("torque", desplayTorque, transform);
 		Monitor.Log("steer", vectorAction[0], transform);
 		//Monitor.Log("vectorAction", vectorAction[0], null);
 		Monitor.Log("CumulativeReward", this.GetCumulativeReward(), null);
-		Monitor.Log("time left", (this.maxStep - this.GetStepCount()) / (float)this.maxStep, null);
+		Monitor.Log("time left", 1 - (GetStepCount() / (float)maxStep), null);
 
 		//Debug.Log("torque = " + torque + " forwardSpeed = " + forwardSpeed);
 	}
@@ -99,7 +102,6 @@ public class WJAutoCarAgent : Agent
 
 		Monitor.Log("forwardSpeed", wd.ForwardSpeed / 30, transform);
 		AddReward(wd.ForwardSpeed / 1000);
-		
 	}
 
 	public override float[] Heuristic()

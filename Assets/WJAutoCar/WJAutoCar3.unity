@@ -3569,11 +3569,12 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  maxStep: 4000
+  maxStep: 20000
   brains:
   - {fileID: 11400000, guid: e663b42ef19a5f144b4a41c6f08f5ad9, type: 3}
   - {fileID: 11400000, guid: f68f1741706116d4bae76c67017826e2, type: 3}
   - {fileID: 11400000, guid: 6acd4743c1dfe344f817d0a9cecd32c2, type: 3}
+  - {fileID: 11400000, guid: aaf1814457c82a343bede30ddd375852, type: 3}
   dropdown: {fileID: 352398759}
 --- !u!114 &1062438955
 MonoBehaviour:
@@ -3588,12 +3589,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 4
+    vectorObservationSize: 5
     numStackedVectorObservations: 1
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 11400000, guid: 6acd4743c1dfe344f817d0a9cecd32c2, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: WJAutoCar
