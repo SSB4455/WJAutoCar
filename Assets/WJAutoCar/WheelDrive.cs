@@ -11,7 +11,7 @@ public enum DriveType
 
 public class WheelDrive : MonoBehaviour
 {
-    [Tooltip("Maximum steering angle of the wheels")]
+	[Tooltip("Maximum steering angle of the wheels")]
 	public float maxAngle = 30f;
 	[Tooltip("Maximum torque applied to the driving wheels")]
 	public float maxTorque = 300f;
@@ -31,7 +31,7 @@ public class WheelDrive : MonoBehaviour
 	public DriveType driveType;
 	public bool scriptControl;
 
-    private WheelCollider[] m_Wheels;
+	private WheelCollider[] m_Wheels;
 	float forwardSpeed;
 	public float ForwardSpeed { get { return forwardSpeed; } }
 
@@ -42,14 +42,14 @@ public class WheelDrive : MonoBehaviour
 	{
 		m_Wheels = GetComponentsInChildren<WheelCollider>();
 
-		for (int i = 0; i < m_Wheels.Length; ++i) 
+		for (int i = 0; i < m_Wheels.Length; ++i)
 		{
-			var wheel = m_Wheels [i];
+			var wheel = m_Wheels[i];
 
 			// Create wheel shapes only when needed.
 			if (wheelShape != null)
 			{
-				var ws = Instantiate (wheelShape);
+				var ws = Instantiate(wheelShape);
 				ws.transform.parent = wheel.transform;
 			}
 		}
@@ -70,7 +70,7 @@ public class WheelDrive : MonoBehaviour
 
 	public void Drive(float angle, float torque, bool pullHandBrake = false)
 	{
-		//m_Wheels[0].ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
+		m_Wheels[0].ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
 
 		angle = maxAngle * angle;
 		torque = maxTorque * torque;
@@ -108,14 +108,14 @@ public class WheelDrive : MonoBehaviour
 			}
 
 			// Update visual wheels if any.
-			if (wheelShape) 
+			if (wheelShape)
 			{
 				Quaternion q;
 				Vector3 p;
-				wheel.GetWorldPose (out p, out q);
+				wheel.GetWorldPose(out p, out q);
 
 				// Assume that the only child of the wheelcollider is the wheel shape.
-				Transform shapeTransform = wheel.transform.GetChild (0);
+				Transform shapeTransform = wheel.transform.GetChild(0);
 				shapeTransform.position = p;
 				shapeTransform.rotation = q;
 			}

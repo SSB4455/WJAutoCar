@@ -12,7 +12,12 @@ ModelImporter:
     3300000: bbbbb
     4300000: bbbbb
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bbbbbMat
+    second: {fileID: 2100000, guid: 6c63d09cc4fa14447bdc57719850d057, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

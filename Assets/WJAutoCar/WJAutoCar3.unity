@@ -513,14 +513,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.375
+    m_AsymptoteSlip: 1.6
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.375
-    m_AsymptoteValue: 0.5625
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1.5
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!23 &124791203
@@ -1398,14 +1398,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.375
+    m_AsymptoteSlip: 1.6
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.375
-    m_AsymptoteValue: 0.5625
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1.5
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!23 &407671372
@@ -1594,14 +1594,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.375
+    m_AsymptoteSlip: 1.6
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.375
-    m_AsymptoteValue: 0.5625
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1.5
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!23 &459622272
@@ -3572,9 +3572,7 @@ MonoBehaviour:
   maxStep: 20000
   brains:
   - {fileID: 11400000, guid: e663b42ef19a5f144b4a41c6f08f5ad9, type: 3}
-  - {fileID: 11400000, guid: f68f1741706116d4bae76c67017826e2, type: 3}
   - {fileID: 11400000, guid: 6acd4743c1dfe344f817d0a9cecd32c2, type: 3}
-  - {fileID: 11400000, guid: aaf1814457c82a343bede30ddd375852, type: 3}
   dropdown: {fileID: 352398759}
 --- !u!114 &1062438955
 MonoBehaviour:
@@ -5098,14 +5096,14 @@ WheelCollider:
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.375
+    m_AsymptoteSlip: 1.6
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.375
-    m_AsymptoteValue: 0.5625
+    m_AsymptoteSlip: 1
+    m_AsymptoteValue: 1.5
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!23 &1882319666
@@ -5732,7 +5730,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2587883394187161975}
-  m_Material: {fileID: 13400000, guid: 4e2a18fdb7d20fa40bafb75ae73783d7, type: 2}
+  m_Material: {fileID: 13400000, guid: c9dc7a6b63d395a419975d6f03128663, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
