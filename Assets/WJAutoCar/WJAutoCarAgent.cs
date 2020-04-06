@@ -6,9 +6,14 @@ using MLAgents;
 
 public class WJAutoCarAgent : Agent
 {
+	public GameObject[] checkPointSeq;
+	int checkIndex;
 	public NNModel[] brains;
 	public Dropdown dropdown;
-	private WheelDrive wd;
+	public Text LapText;
+	float lapStartTime = 0;
+	float[] lapTimeTops = new float[3];
+	WheelDrive wd;
 
 
 
@@ -41,8 +46,7 @@ public class WJAutoCarAgent : Agent
 		wd.Drive(0, 0);
 
 		//hr.brakeTorque = 10000;
-
-		lastCollisionTime = Time.realtimeSinceStartup;
+		lapStartTime = 0;
 	}
 
 	public override void CollectObservations()
@@ -65,21 +69,21 @@ public class WJAutoCarAgent : Agent
 		{
 			GiveModel("WJAutoCar", brains[dropdown.value]);
 		}
+		lapTimeTops = new float[3];
+		Done();
 	}
 
 	public override void AgentAction(float[] vectorAction)
 	{
 		wd.Drive(vectorAction[0], vectorAction[1]);
-		AddReward(-0.00001f);
 
 		float[] desplayTorque = new float[] { vectorAction[1] };
 		Monitor.Log("torque", desplayTorque, transform);
+		//Debug.Log("torque = " + torque + " forwardSpeed = " + forwardSpeed);
 		Monitor.Log("steer", vectorAction[0], transform);
 		//Monitor.Log("vectorAction", vectorAction[0], null);
-		Monitor.Log("CumulativeReward", this.GetCumulativeReward(), null);
+		Monitor.Log("CumulativeReward", this.GetCumulativeReward() / 1000, null);
 		Monitor.Log("time left", 1 - (GetStepCount() / (float)maxStep), null);
-
-		//Debug.Log("torque = " + torque + " forwardSpeed = " + forwardSpeed);
 	}
 
 	void Update()
@@ -88,7 +92,7 @@ public class WJAutoCarAgent : Agent
 		//翻车
 		if (Mathf.Abs(angle_z) > 20)
 		{
-			SetReward(-0.4f);
+			SetReward(-1);
 			Done();
 		}
 
@@ -96,12 +100,23 @@ public class WJAutoCarAgent : Agent
 		if (transform.position.y < 0.3f)
 		//if (transform.position.y < 0)
 		{
-			SetReward(-0.4f);
+			SetReward(-1);
 			Done();
 		}
 
-		Monitor.Log("forwardSpeed", wd.ForwardSpeed / 30, transform);
-		AddReward(wd.ForwardSpeed / 1000);
+		//Monitor.Log("forwardSpeed", wd.ForwardSpeed / 30, transform);
+		AddReward(wd.ForwardSpeed / 100);
+
+		string lapStr = (lapStartTime > 0 ? "lap time(s):" + (Time.realtimeSinceStartup - lapStartTime).ToString("f2") : "") + "\t\t|" + wd.ForwardSpeed.ToString("f2") + "m/s\n";
+		for (int i = 0; i < lapTimeTops.Length; i++)
+		{
+			if (lapTimeTops[i] == 0)
+			{
+				break;
+			}
+			lapStr += "<size=" + (14 + (lapTimeTops.Length - i) * 2) + ">Top" + (i + 1) + ":" + lapTimeTops[i].ToString("f2") + "</size>\n";
+		}
+		LapText.text = lapStr;
 	}
 
 	public override float[] Heuristic()
@@ -113,25 +128,34 @@ public class WJAutoCarAgent : Agent
 		return action;
 	}
 
-	Collider lastCollider = null;
-	float lastCollisionTime = 0;
 	private void OnTriggerEnter(Collider collider)
 	{
-		Debug.Log("OnTriggerEnter " + collider.gameObject.name);
+		Debug.Log("OnTriggerEnter " + collider.gameObject.name + " checkIndex " + checkIndex);
 		if (collider.tag == "RewardWall")
 		{
-			if (collider != lastCollider)
+			if (collider.gameObject == checkPointSeq[checkIndex])
 			{
-				if (lastCollider != null)
+				if (checkIndex == 0)
 				{
-					AddReward(0.5f / (1 + Time.realtimeSinceStartup - lastCollisionTime));
+					float lapTime = Time.realtimeSinceStartup - lapStartTime;
+					for (int i = lapTimeTops.Length - 1; lapStartTime > 0 && i >= 0; i--)
+					{
+						if (lapTimeTops[i] == 0 || lapTime < lapTimeTops[i])
+						{
+							if(i < lapTimeTops.Length - 1)
+							{
+								lapTimeTops[i + 1] = lapTimeTops[i];
+							}
+							lapTimeTops[i] = lapTime;
+						}
+					}
+					lapStartTime = Time.realtimeSinceStartup;
 				}
-				lastCollider = collider;
-				lastCollisionTime = Time.realtimeSinceStartup;
+				checkIndex = (checkIndex + 1) % checkPointSeq.Length;
 			}
 			else
 			{
-				AddReward(-0.2f);
+				AddReward(-0.5f);
 			}
 		}
 	}
