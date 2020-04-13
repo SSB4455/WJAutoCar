@@ -52,15 +52,15 @@ public class WJAutoCarAgent : Agent
 	public override void CollectObservations()
 	{
 		// car 3D Speed and ForwardSpeed
-		AddVectorObs(GetComponent<Rigidbody>().velocity.x);
-		AddVectorObs(GetComponent<Rigidbody>().velocity.y);
-		AddVectorObs(wd.ForwardSpeed);
+		//AddVectorObs(GetComponent<Rigidbody>().velocity.x);
+		//AddVectorObs(GetComponent<Rigidbody>().velocity.y);
+		//AddVectorObs(wd.ForwardSpeed);
 
 		// car rotation
-		AddVectorObs(transform.rotation.eulerAngles.y / 360);
+		//AddVectorObs(transform.rotation.eulerAngles.y / 360);
 
 		// 剩余活动时间
-		AddVectorObs(GetStepCount() / (float)maxStep);
+		//AddVectorObs(GetStepCount() / (float)maxStep);
 	}
 
 	public void ChangeBrain()
@@ -84,6 +84,8 @@ public class WJAutoCarAgent : Agent
 		//Monitor.Log("vectorAction", vectorAction[0], null);
 		Monitor.Log("CumulativeReward", this.GetCumulativeReward() / 1000, null);
 		Monitor.Log("time left", 1 - (GetStepCount() / (float)maxStep), null);
+
+		AddReward((wd.ForwardSpeed - 3) / 100);
 	}
 
 	void Update()
@@ -105,7 +107,6 @@ public class WJAutoCarAgent : Agent
 		}
 
 		//Monitor.Log("forwardSpeed", wd.ForwardSpeed / 30, transform);
-		AddReward(wd.ForwardSpeed / 100);
 
 		string lapStr = (lapStartTime > 0 ? "lap time(s):" + (Time.realtimeSinceStartup - lapStartTime).ToString("f2") : "") + "\t\t|" + wd.ForwardSpeed.ToString("f2") + "m/s\n";
 		for (int i = 0; i < lapTimeTops.Length; i++)

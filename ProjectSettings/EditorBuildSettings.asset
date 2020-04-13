@@ -4,8 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/WJAutoCar/WJAutoCar3.unity
-    guid: 190a0650a23ba524db524b67b2ebb285
+  m_Scenes: []
   m_configObjects: {}

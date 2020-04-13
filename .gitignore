@@ -24,6 +24,7 @@ Heapshots/
 /*.png
 
 [Dd]emo/
+[Bb]uild/
 [Ww]hat/
 Ml-Agent_Examples/
 ML-Agents/

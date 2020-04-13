@@ -34,7 +34,8 @@
 
 - 调整ml-agents/config/trainer_config.yaml 里面的参数（不会调用默认参数就还行）
 - 重命名为 mlagents-learn config/config.yaml 在命令行中运行：
-  > mlagents-learn config/config.yaml --run-id=WJAutoCar-1 --train
+  > mlagents-learn config/config.yaml --run-id=WJAutoCar-1 --train  
+  > mlagents-learn config/config.yaml --env=E:/WJAutoCar/build/WJAutoCar.exe --run-id=WJAutoCar-1 --train
 - (其中WJAutoCar是游戏中大脑的名字)
 - 然后在unity中点击▶️运行
 - 开始进行训练后，ml-agents 文件夹将 包含一个 summaries 目录。为了更详细地观测训练过程， 您可以使用 TensorBoard。在命令行中运行：
@@ -56,12 +57,6 @@
 
 ![WJAutoCar20200330训练效果图.png](https://github.com/SSB4455/WJAutoCar/blob/master/doc/WJAutoCar20200330%E8%AE%AD%E7%BB%83%E6%95%88%E6%9E%9C%E5%9B%BE.png)  
 
-## 现存问题
-
-- 车辆控制还不像模型车（例如高速过弯时不会像真实小车一样翻车 并且车速不够快）
-- 当车辆重置时车轮还有惯性旋转
-- 道路存在极少素材重叠
-
 ## 下一步要做
 
 - 训练次数与时间和显示时间的对比
@@ -81,3 +76,16 @@
 - 假设我们在训练一个外卖员送外卖 我们会给外卖员设定送到 朝向目标移动的奖励 同时我们会给外卖员不遵守交通规则以及超时的惩罚
   然而就在超时和遵守交通规则的两难里面 机器学习的外卖员自然也会像人类一样稍微不遵守交通规则从而在规定时间内送到 因为这样奖励更多
   所以在机器学习的训练中如何让模型不做那些人类伦理所不能接受的事情也是要注意的一个点
+
+## 现存问题
+
+- 训练时摄像头和多个位置速度传感器并存时训练得非常慢 甚至像没有使用摄像头摸黑训练一样
+- 车辆控制还不像模型车（例如高速过弯时不会像真实小车一样翻车 并且车速不够快）
+- 当车辆重置时车轮还有惯性旋转
+
+## 已解决问题
+
+- 车辆速度奖励获取异常  
+  > 将奖励车辆速度的触发放在AgentAction方法中而不要放在Update中因为在训练过程中是加速的Update会比正常速度调用少很多
+- 道路存在极少素材重叠
+  > 使用ProGrids设置靠近吸附来拼接赛道就能够有效防止重叠和细小的缝隙
