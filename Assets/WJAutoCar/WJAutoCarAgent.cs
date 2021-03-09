@@ -143,7 +143,7 @@ public class WJAutoCarAgent : Agent
 					{
 						if (lapTimeTops[i] == 0 || lapTime < lapTimeTops[i])
 						{
-							if(i < lapTimeTops.Length - 1)
+							if (i < lapTimeTops.Length - 1)
 							{
 								lapTimeTops[i + 1] = lapTimeTops[i];
 							}

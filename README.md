@@ -8,8 +8,8 @@
 
 ## [安装ml-agents](https://github.com/Unity-Technologies/ml-agents/blob/788a34786094e974c1637f08a709640f72e1c755/docs/Installation.md)(了解)
 
-- 安装unity 3018.4.18f1
-- Install the com.unity.ml-agents Unity package
+- 安装unity3D 2018.4.18f1
+- Install the com.unity.ml-agents Unity package [ml-agents-0.14.1](https://github.com/Unity-Technologies/ml-agents/releases/tag/0.14.1)
 - [Unity ML-Agent之Agents设计](https://www.jianshu.com/p/6d40059a3454)(部分内容已经和最新版本不对应 但可以参考名词翻译部分)
 - [码云同步项目地址](https://gitee.com/mirrors/Unity-ML-Agents)
 - [深度学习PPO算法简介](https://zhuanlan.zhihu.com/p/38185553)
@@ -83,3 +83,4 @@
 - Tensorflow训练参数解释
 - 增加不同赛道
 - 增加车辆及行人躲避训练
+- [Marathon Environments](https://github.com/Unity-Technologies/marathon-envs)
